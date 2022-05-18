@@ -13,7 +13,7 @@ class SlideTile extends StatelessWidget {
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
-      margin: EdgeInsets.fromLTRB(5, top, 5, 25),
+      margin: EdgeInsets.fromLTRB(10, top, 10, 50),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [

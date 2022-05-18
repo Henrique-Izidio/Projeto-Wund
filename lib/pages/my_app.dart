@@ -21,16 +21,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.cyanAccent
-      ),
+    
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blue,
-          backgroundColor: Colors.grey[200],
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
