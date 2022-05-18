@@ -34,7 +34,9 @@ class _PaginaInicialState extends State<PaginaInicial> {
   }
 
   final _form = GlobalKey<FormState>();
-  final _valor = TextEditingController();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+
   bool esconderSenha = true;
 
   iconeSenha(esconderSenha) {
@@ -99,7 +101,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
                                 width: 250,
                                 child: TextFormField(
                                   maxLength: 20,
-                                  controller: _valor,
+                                  controller: email,
                                   style: TextStyle(fontSize: 15),
                                   decoration: InputDecoration(
                                     focusedBorder: OutlineInputBorder(
@@ -123,6 +125,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
                               SizedBox(
                                 width: 250,
                                 child: TextFormField(
+                                  controller: senha,
                                   obscureText: textSenha(esconderSenha),
                                   maxLength: 20,
                                   style: TextStyle(fontSize: 15),
@@ -272,8 +275,14 @@ class _PaginaInicialState extends State<PaginaInicial> {
           children: [
             Center(
               child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/imagens/fundo.png'),
+                  ),
+                ),
                 width: MediaQuery.of(context).size.width,
-                height: 170,
+                height: 150,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: _listSlide.length,
