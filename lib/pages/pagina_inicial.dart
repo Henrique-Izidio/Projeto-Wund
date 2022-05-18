@@ -161,31 +161,11 @@ class _PaginaInicialState extends State<PaginaInicial> {
                                 ),
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.all(10),
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 20,
-                                      backgroundImage: NetworkImage(
-                                          'https://www.shareicon.net/data/256x256/2016/07/10/119930_google_512x512.png'),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 20,
-                                      backgroundImage: NetworkImage(
-                                          'https://cdn.icon-icons.com/icons2/2429/PNG/128/facebook_logo_icon_147291.png'),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(left: 20),
+                                    padding: EdgeInsets.only(),
                                     decoration: BoxDecoration(
-                                      border: Border(
-                                          left: BorderSide(
-                                              width: 4, color: Colors.white)),
                                     ),
                                     child: Container(
                                       child: ElevatedButton(
