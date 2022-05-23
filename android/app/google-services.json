@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "445477841853",
+    "project_id": "projeto-wund-app",
+    "storage_bucket": "projeto-wund-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445477841853:android:c2d36a98835ec79c2700d4",
+        "android_client_info": {
+          "package_name": "com.example.wund"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445477841853-d7sisqhogbbrlj6j17bigb7bcr0894r0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1ABZW-ymIqSJfw7qs040Ta0kvI6jbqz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445477841853-d7sisqhogbbrlj6j17bigb7bcr0894r0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

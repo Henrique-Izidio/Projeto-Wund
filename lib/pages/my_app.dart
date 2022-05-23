@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wund/pages/pagina_inicial.dart';
+import 'package:wund/widgets/auth_check.dart';
 
 import 'pagina_consulta.dart';
-import 'pagina_inicial.dart';
+import 'home_page.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
@@ -11,40 +13,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _opcaoSelecionada = 0;
-
-  setPaginaAtual(opcao) {
-    setState(() {
-      _opcaoSelecionada = opcao;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-             BottomNavigationBarItem(
-              icon: Icon(Icons.content_paste_search_outlined),
-              label: 'Agendar',),
-          ],
-          currentIndex: _opcaoSelecionada,
-          onTap: setPaginaAtual,
-        ),
-        body: IndexedStack(
-          index: _opcaoSelecionada,
-          children: <Widget>[
-            PaginaInicial(),
-            PaginaConsulta(),
-          ],
-        ),
-      ),
+      title: 'Wund',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.indigo),
+      home: AuthCheck(),
     );
   }
 }

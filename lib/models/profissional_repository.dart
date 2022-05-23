@@ -1,5 +1,5 @@
-import 'package:wund/models/profissional.dart';
-
+import 'profissional.dart'
+;
 class ProfissionalRepository {
   static List<Profissional> tabela = [
     Profissional(

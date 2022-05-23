@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wund/main.dart';
-import 'package:wund/models/profissional_repository.dart';
-import 'package:wund/pages/pagina_inicial.dart';
+import '../main.dart';
+import '../models/profissional_repository.dart';
+import 'home_page.dart';
 import 'my_app.dart';
 
 class PaginaConsulta extends StatefulWidget {
