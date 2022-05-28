@@ -1,14 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AuthException implements Exception {
   String message;
-  AuthException({required this.message});
+  AuthException(this.message);
 }
 
 class AuthService extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
   User? usuario;
   bool isLoading = true;
 
@@ -35,9 +34,9 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (err) {
       if (err.code == 'weak-password') {
-        throw AuthException(message: 'A senha é muito fraca.');
+        throw AuthException('A senha é muito fraca.');
       } else if (err.code == 'email-already-in-use') {
-        throw AuthException(message: 'Esse email já está cadastrado.');
+        throw AuthException( 'Esse email já está cadastrado.');
       }
     }
   }
@@ -48,9 +47,9 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (err) {
       if (err.code == 'user-not-found') {
-        throw AuthException(message: 'Email não encontrado.');
+        throw AuthException( 'Email não encontrado.');
       } else if (err.code == 'wrong-password') {
-        throw AuthException(message: 'Senha incorreta.');
+        throw AuthException( 'Senha incorreta.');
       }
     }
   }
