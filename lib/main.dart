@@ -4,10 +4,9 @@ import 'package:wund/firebase_options.dart';
 import 'package:wund/services/auth_services.dart';
 import 'pages/my_app.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

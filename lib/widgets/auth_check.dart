@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wund/pages/home_page.dart';
-import 'package:wund/pages/pagina_inicial.dart';
 import 'package:wund/services/auth_services.dart';
 
 import '../pages/login_page.dart';

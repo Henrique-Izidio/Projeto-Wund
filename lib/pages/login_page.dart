@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
 
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
             padding: EdgeInsets.all(10),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Informe seu email!';
+                          return 'Informe o seu email!';
                         }
                         return null;
                       },
@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(24),
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           if (isLogin) {
                             login();
                           } else {

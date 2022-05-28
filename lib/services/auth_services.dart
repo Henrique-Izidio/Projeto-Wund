@@ -12,10 +12,10 @@ class AuthService extends ChangeNotifier {
   bool isLoading = true;
 
   AuthService() {
-    authCheck();
+    _authCheck();
   }
 
-  authCheck() {
+  _authCheck() {
     _auth.authStateChanges().listen((User? user) {
       usuario = (user == null) ? null : user;
       isLoading = false;
@@ -34,7 +34,7 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (err) {
       if (err.code == 'weak-password') {
-        throw AuthException('A senha é muito fraca.');
+        throw AuthException('A senha é muito fraca!');
       } else if (err.code == 'email-already-in-use') {
         throw AuthException( 'Esse email já está cadastrado.');
       }
