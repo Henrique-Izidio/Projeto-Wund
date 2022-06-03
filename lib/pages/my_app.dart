@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wund/pages/pagina_inicial.dart';
 import 'package:wund/widgets/auth_check.dart';
 
-import 'pagina_consulta.dart';
-import 'home_page.dart';
+
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);

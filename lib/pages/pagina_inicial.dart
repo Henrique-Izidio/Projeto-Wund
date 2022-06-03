@@ -38,6 +38,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.white,
         elevatedButtonTheme: ElevatedButtonThemeData(

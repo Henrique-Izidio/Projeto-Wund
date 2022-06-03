@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:wund/pages/cadastro_page.dart';
+import 'package:wund/models/user_repository.dart';
+import 'package:wund/pages/login_page.dart';
+import 'package:wund/widgets/auth_check.dart';
+
 import '../services/auth_services.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class CadastroPage extends StatefulWidget {
+  CadastroPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CadastroPage> createState() => _CadastroPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CadastroPageState extends State<CadastroPage> {
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
+  final nome = TextEditingController();
 
   bool esconderSenha = true;
   bool loading = false;
-
 
   mudarValor() {
     if (!esconderSenha) {
@@ -54,14 +57,13 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-
-
-  login() async {
+  registrar(nome) async {
     setState(() {
       loading = true;
     });
     try {
-      await context.read<AuthService>().login(email.text, senha.text);
+      await context.read<AuthService>().registrar(email.text, senha.text);
+      await context.read<UserRepository>().saveName(nome);
     } on AuthException catch (err) {
       setState(() {
         loading = false;
@@ -70,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
           .showSnackBar(SnackBar(content: Text(err.message)));
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,18 +97,22 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Bem vindo!',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 60),
+                    child: Text(
+                      'Cadastro',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1),
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 24),
                     child: TextFormField(
-                      controller: email,
+                      controller: nome,
                       decoration: const InputDecoration(
                         focusColor: Colors.white,
                         focusedBorder: OutlineInputBorder(
@@ -117,7 +122,32 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.person_outline_rounded,
                         ),
                         border: OutlineInputBorder(),
-                        labelText: 'email',
+                        labelText: 'Nome',
+                      ),
+                      keyboardType: TextInputType.name,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o seu nome!';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 24),
+                    child: TextFormField(
+                      controller: email,
+                      decoration: const InputDecoration(
+                        focusColor: Colors.white,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.email_outlined,
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
@@ -146,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           border: const OutlineInputBorder(),
                           focusColor: Colors.white,
-                          labelText: 'senha'),
+                          labelText: 'Senha'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Informe sua senha!';
@@ -173,7 +203,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                            login();
+                          registrar(nome.text);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return AuthCheck();
+                          }));
                         }
                       },
                       child: Row(
@@ -199,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(5),
                                   child: Text(
-                                    'login',
+                                    'Cadastrar-se',
                                     style: const TextStyle(
                                         fontSize: 16, color: Colors.indigo),
                                   ),
@@ -211,10 +245,10 @@ class _LoginPageState extends State<LoginPage> {
                   TextButton(
                       onPressed: () => Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return CadastroPage();
+                            return AuthCheck();
                           })),
                       child: Text(
-                        'Não tem uma conta? cadastre-se',
+                        'Já tem uma conta? realize o login!',
                         style: const TextStyle(color: Colors.white),
                       )),
                 ],
