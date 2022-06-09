@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wund/carrosel/slide_tile.dart';
+import 'package:wund/models/user_repository.dart';
 import 'package:wund/widgets/drawer_construtor.dart';
 
 class PaginaInicial extends StatefulWidget {
@@ -33,10 +35,9 @@ class _PaginaInicialState extends State<PaginaInicial> {
     super.initState();
   }
 
-  
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

@@ -6,7 +6,6 @@ import 'package:wund/services/auth_services.dart';
 class UserRepository extends ChangeNotifier {
   late FirebaseFirestore db;
   late AuthService auth;
-  late String nome;
 
   UserRepository({required this.auth}) {
     _startRepository();
@@ -24,13 +23,24 @@ class UserRepository extends ChangeNotifier {
     try {
       await db
           .collection('usuarios/${auth.usuario!.uid}/detalhes')
-          .doc(nome)
+          .doc(auth.usuario!.uid)
           .set({
+        'nome': nome,
         'idade': 20,
       });
     } catch (err) {
       debugPrint('Permissão requirida no Firestore: $err');
     }
     notifyListeners();
+  }
+
+  readName() async {
+    if (auth.usuario != null) {
+      final snapshot = await db
+          .collection('usuarios/${auth.usuario!.uid}/detalhes')
+          .doc(auth.usuario!.uid)
+          .get();
+      return snapshot.get('nome');
+    }
   }
 }

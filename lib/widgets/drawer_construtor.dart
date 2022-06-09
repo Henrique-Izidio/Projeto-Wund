@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:wund/pages/login_page.dart';
 import 'package:wund/services/auth_services.dart';
+
+import '../models/user_repository.dart';
 
 class DrawerConstrutor extends StatefulWidget {
   DrawerConstrutor({Key? key}) : super(key: key);
@@ -75,9 +78,19 @@ class _DrawerState extends State<DrawerConstrutor> {
     }
   }
 
+  lerNome() async {
+    try {
+      String nome = await context.read<UserRepository>().readName();
+      return nome;
+    } catch (err) {
+      print('Ocorreu o erro $err');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
+    String nome = lerNome();
     return Drawer(
       child: Container(
         padding: EdgeInsets.all(10),
